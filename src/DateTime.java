@@ -1,13 +1,13 @@
 public class DateTime extends Date {
-    public int hour=0;
-    public int minute=0;
+    protected int hour=0;
+    protected int minute=0;
 
-    public DateTime(int day, int month ,int year, int hour, int minute){
-        super(day,month,year);
+    public DateTime(int year, int month ,int day, int hour, int minute){
+        super(year,month,day);
         if (hour<=23 && hour>=0){
             this.hour=hour;
         }
-        if (minute<=59 && hour>=0){
+        if (minute<=59 && minute>=0){
             this.minute=minute;
         }
         this.hasTime=true;
@@ -28,8 +28,22 @@ public class DateTime extends Date {
         return false;
     }
     @Override
-    public int hashCode() { //TODO: to many years
-        return super.hashCode()*24*60+ hour*60 + minute;
+    public int hashCode() {
+        return super.hashCode()*24*60 + hour*60 + minute;
     }
+
+    public void setHour(int hour) {
+        if (hour <= 23 && hour >= 0) {
+            this.hour = hour;
+        }
+        else this.hour=0;
+    }
+    public void setMinute(int minute) {
+        if (minute <= 59 && minute >= 0) {
+            this.minute = minute;
+        }
+        else this.minute=0;
+    }
+
 
     }
