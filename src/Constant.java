@@ -1,4 +1,4 @@
-public class Constant extends Polynomial{
+public class Constant extends Function{
     final double value;
 
     public Constant(double value) {

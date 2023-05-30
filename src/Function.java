@@ -32,6 +32,7 @@ public abstract class Function{
     //taylor's polynom
     protected Polynomial taylorPolynomial(int n){
         //TODO: implement
+        return p;
     }
 
 }
