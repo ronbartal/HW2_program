@@ -27,15 +27,9 @@ public class MultiSum extends Function{
         return new MultiSum(res);
     }
 
+
+
     @Override
-    public String toString() {
-        String res="(";
-        for (int i = 0; i < functionNum-1; i++) {
-            res+= members[i].toString() + "+";
-        }
-        return res + members[functionNum-1].toString()+ ")";
-    }
-    /* //TODO: is it legal to use string builder?
     public String toString() {
         StringBuilder sb = new StringBuilder("(");
         for (int i = 0; i < functionNum - 1; i++) {
@@ -44,7 +38,13 @@ public class MultiSum extends Function{
         sb.append(members[functionNum - 1].toString()).append(")");
         return sb.toString();
     }
-
-     */
-
+    //another way to implement
+    /* public String toString() {
+        String res="(";
+        for (int i = 0; i < functionNum-1; i++) {
+            res += members[i].toString() + "+";
+        }
+        return res + members[functionNum-1].toString()+ ")";
+    }
+    */
 }
