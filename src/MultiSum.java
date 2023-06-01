@@ -38,13 +38,4 @@ public class MultiSum extends Function{
         sb.append(members[functionNum - 1].toString()).append(")");
         return sb.toString();
     }
-    //another way to implement
-    /* public String toString() {
-        String res="(";
-        for (int i = 0; i < functionNum-1; i++) {
-            res += members[i].toString() + "+";
-        }
-        return res + members[functionNum-1].toString()+ ")";
-    }
-    */
 }

@@ -34,7 +34,7 @@ public abstract class Function{
         return root;
     }
 
-    //taylor's polynom
+    //taylor's polynomial
     protected Polynomial taylorPolynomial(int n){
         double[] coefficients = new double[n+1];
         Function tempFunc = this;
@@ -44,6 +44,17 @@ public abstract class Function{
         }
 
         return new Polynomial(coefficients);
+    }
+
+    private double factorial(int n) {
+        if( n == 1 || n == 0 ) {
+            return 1;
+        }
+        double factorial = 1;
+        for(int i=1; i <= n; i++) {
+            factorial *= i;
+        }
+        return factorial;
     }
 
 }

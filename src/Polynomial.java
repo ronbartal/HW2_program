@@ -41,100 +41,119 @@ public class Polynomial extends Function {
     public String toString() {
         Boolean isFirst = true;
         StringBuilder sb = new StringBuilder("(");
+
         // if deg == 0
-        if(coefficients[0] != 0) {
-            if(isRound(coefficients[0])) {
-                //down casting
+        if(degree == 0) {
+            if (coefficients[0] == (int) coefficients[0]) {
+                return "(" + (int)coefficients[0] + ")";
+            } else {
+                return "(" + coefficients[0] + ")";
+            }
+        }
+
+        if (coefficients[0] != 0) {
+            if (isRound(coefficients[0])) {
                 sb.append((int) coefficients[0]);
             } else {
                 sb.append(coefficients[0]);
             }
             isFirst = false;
         }
+
         // if deg == 1
         if (coefficients[1] == 1) {
-            if(!isFirst) {
+            if (!isFirst) {
                 sb.append(" + x");
-            }
-            else{
+            } else {
                 isFirst = false;
                 sb.append("x");
             }
-        }
-        else if (coefficients[1] == -1) {
-            if(!isFirst) {
+        } else if (coefficients[1] == -1) {
+            if (!isFirst) {
                 sb.append(" - x");
-            }
-            else {
+            } else {
                 isFirst = false;
                 sb.append("-x");
             }
-        }
-        else if(coefficients[1] != 0) {
+        } else if (coefficients[1] != 0) {
             if (coefficients[1] > 0) {
-                if(!isFirst) {
-                    sb.append(" + ").append(coefficients[1]).append("x");
-                }
-                else{
+                if (!isFirst) {
+                    sb.append(" + ");
+                } else {
                     isFirst = false;
-                    sb.append(coefficients[1]).append("x");
                 }
-            }
-            else {
-                if(!isFirst) {
-                    sb.append(" - ").append(-coefficients[1]).append("x");
+                if (isRound(coefficients[1])) {
+                    sb.append((int) coefficients[1]);
+                } else {
+                    sb.append(coefficients[1]);
                 }
-                else {
+                sb.append("x");
+            } else {
+                if (!isFirst) {
+                    sb.append(" - ");
+                } else {
                     isFirst = false;
-                    sb.append(-coefficients[1]).append("x");
                 }
+                if (isRound(coefficients[1])) {
+                    sb.append((int) -coefficients[1]);
+                } else {
+                    sb.append(-coefficients[1]);
+                }
+                sb.append("x");
             }
         }
 
         for (int i = 2; i <= degree; i++) {
             if (coefficients[i] == 1) {
-                if(!isFirst) {
+                if (!isFirst) {
                     sb.append(" + x^").append(i);
-                }
-                else {
+                } else {
                     isFirst = false;
                     sb.append("x^").append(i);
                 }
-            }
-            else if (coefficients[i] == -1) {
-                if(!isFirst) {
+            } else if (coefficients[i] == -1) {
+                if (!isFirst) {
                     sb.append(" - x^").append(i);
-                }
-                else{
+                } else {
                     isFirst = false;
                     sb.append("-x^").append(i);
                 }
-            }
-            else if(coefficients[i] > 0) {
-                if(!isFirst) {
-                    sb.append(" + ").append(coefficients[i]).append("x^").append(i);
-                }
-                else {
+            } else if (coefficients[i] > 0) {
+                if (!isFirst) {
+                    sb.append(" + ");
+                } else {
                     isFirst = false;
-                    sb.append(coefficients[i]).append("x^").append(i);
                 }
-            }
-            else if(coefficients[i] < 0){
-                if(!isFirst) {
-                    sb.append(" - ").append(-coefficients[i]).append("x^").append(i);
+                if (isRound(coefficients[i])) {
+                    sb.append((int) coefficients[i]);
+                } else {
+                    sb.append(coefficients[i]);
                 }
-                else {
+                sb.append("x^").append(i);
+            } else if (coefficients[i] < 0) {
+                if (!isFirst) {
+                    sb.append(" - ");
+                } else {
                     isFirst = false;
-                    sb.append(coefficients[i]).append("x^").append(i);
                 }
+                if (isRound(coefficients[i])) {
+                    sb.append((int) -coefficients[i]);
+                } else {
+                    sb.append(-coefficients[i]);
+                }
+                sb.append("x^").append(i);
             }
+        }
+
+        if(isFirst) {
+            sb.append("0");
         }
         sb.append(")");
         return sb.toString();
     }
 
     private boolean isRound(double value) {
-        if(value == (int) value) return true;
-        else return false;
+        return value == (int) value;
     }
+
 }

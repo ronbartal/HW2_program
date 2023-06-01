@@ -22,29 +22,24 @@ public class MultiProduct extends Function{
     }
 
     @Override
-    protected Function derivative() { //TODO: has a problem!
-        MultiProduct[] res = new MultiProduct[factorsNum];
-        Function[] tempFactors = new Function[factorsNum];
-
-        for (int j = 0; j < factorsNum; j++) {//TODO: make an aux func?
-            tempFactors[j] = factors[j].derivative(); // TODO: is it changes "this" factor array?
-        }
+    protected Function derivative() {
+        Function[] derivatives = new Function[factorsNum];
 
         for (int i = 0; i < factorsNum; i++) {
-            for (int k = i - 1; k >= 0; k--) {
-                tempFactors[k + 1] = tempFactors[k];
+            Function[] updatedFactors = new Function[factorsNum];
+            updatedFactors[0] = factors[i].derivative();
+            for (int j = 0, k=1; j < factorsNum; j++) {
+                if (j != i) {
+                    updatedFactors[k] = factors[j];
+                    k++;
+                }
             }
-            tempFactors[0] = factors[i].derivative();
-            res[i] = new MultiProduct(tempFactors);
-
-            // Reset tempFactors to the original factors array
-            for (int j = 0; j < factorsNum; j++) {
-                tempFactors[j] = factors[j].derivative();
-            }
+            derivatives[i] = new MultiProduct(updatedFactors);
         }
 
-        return new MultiSum(res);
+        return new MultiSum(derivatives);
     }
+
 
 
     @Override
