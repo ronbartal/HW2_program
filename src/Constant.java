@@ -1,26 +1,16 @@
-public class Constant extends Function{
-    final double value;
+public class Constant extends Polynomial{
 
     public Constant(double value) {
-        this.value = value;
+        super(value);
     }
 
     @Override
     protected double valueAt(double x) {
-        return value;
+        return coefficients[0];
     }
 
     @Override
     protected Function derivative() {
         return new Constant(0);
-    }
-
-    @Override
-    public String toString() {
-        if (value == (int) value) {
-            return "(" + (int) value + ")";
-        } else {
-            return "(" + value + ")";
-        }
     }
 }

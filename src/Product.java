@@ -7,6 +7,6 @@ public class Product extends MultiProduct {
 
     @Override
     protected Function derivative() {
-        return new Sum(new Product(factors[0].derivative(),factors[1]), new Product(factors[1].derivative(),factors[0]));
+        return new Sum(new Product(factors[0].derivative(),factors[1]), new Product(factors[0],factors[1].derivative()));
     }
 }

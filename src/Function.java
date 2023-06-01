@@ -36,9 +36,14 @@ public abstract class Function{
 
     //taylor's polynom
     protected Polynomial taylorPolynomial(int n){
-        //TODO: implement
-        Polynomial p =new Polynomial(1,2,3);
-        return p;
+        double[] coefficients = new double[n+1];
+        Function tempFunc = this;
+        for (int i = 0; i <= n; i++) {
+            coefficients[i] = tempFunc.valueAt(0)/factorial(i);
+            tempFunc = tempFunc.derivative();
+        }
+
+        return new Polynomial(coefficients);
     }
 
 }

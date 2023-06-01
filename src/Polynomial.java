@@ -23,6 +23,9 @@ public class Polynomial extends Function {
 
     @Override
     protected Function derivative() {
+        if(degree==0){
+            return new Constant(0);
+        }
         if (degree==1){
             return new Constant(coefficients[1]);
         }
